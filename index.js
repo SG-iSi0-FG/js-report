@@ -59,9 +59,9 @@ function component() {
 
 // 初期化処理
 // ----------------------------------------------------------------------------
+randomizePositions(positions);
 component();
 calcAdjacentPositions();
-randomizePositions(positions);
 
 // ピースがクリックされたときに実行する処理 (関数)
 // ----------------------------------------------------------------------------
