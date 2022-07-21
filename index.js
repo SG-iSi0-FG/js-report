@@ -55,7 +55,7 @@ function component() {
 
     piece.style.order = positions[n];
   }
-  document.getElementById('count').innerHTML = count ;
+  document.getElementById('count').innerHTML = "現在のクリック数は"+count ;
 }
 
 
