@@ -63,6 +63,20 @@ randomizePositions(positions);
 component();
 calcAdjacentPositions();
 
+//配列の要素の順番を確認する関数
+function isFinished(array){
+  for(var i = 0; (array.length - 1) > i; i++){
+    if (i+1==array[i]){
+    }else{
+      return false;
+    }
+    if (array[i]==(array.length - 1)){
+      window.alert("クリア");
+      return true;
+    }
+  }
+}
+
 // ピースがクリックされたときに実行する処理 (関数)
 // ----------------------------------------------------------------------------
 function pieceClickHandler(event) {
@@ -82,8 +96,9 @@ function pieceClickHandler(event) {
     component();
 
     // 隣接するピースを再計算する
-    calcAdjacentPositions(); 
+    calcAdjacentPositions();
   }
+  isFinished(positions);
 }
 
 
@@ -91,6 +106,5 @@ function pieceClickHandler(event) {
 // ----------------------------------------------------------------------------
 for (let n = 1; n <= 15; n = n + 1) {
   const piece = document.querySelector('.piece-' + n);
-
   piece.addEventListener('click', pieceClickHandler);
 }
