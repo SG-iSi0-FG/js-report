@@ -4,7 +4,7 @@ let up;    // 空白ピース基準で 1 つ上のピースの場所を記録
 let down;  // 空白ピース基準で 1 つ下のピースの場所を記録
 let left;  // 空白ピース基準で 1 つ左のピースの場所を記録
 let right; // 空白ピース基準で 1 つ右のピースの場所を記録
-let count=0;
+let count=0;// クリック数を記録
 
 // 各ピースの場所を記録
 let positions = [
@@ -35,7 +35,6 @@ function calcAdjacentPositions() {
   right = temp_right;
 }
 
-
 // Component 相当の関数を準備 (State => View にあたるもの)
 // ----------------------------------------------------------------------------
 function component() {
@@ -56,13 +55,10 @@ calcAdjacentPositions();
 //配列の要素の順番を確認する関数
 function isFinished(array){
   for(var i = 0; (array.length - 1) > i; i++){
-    if (i+1==array[i]){
-    }else{
+    if (i+1!=array[i]){
       return false;
     }
     if (array[i]==(array.length - 1)){
-      window.alert("Restart!!");
-      document.location.reload();
       return true;
     }
   }
@@ -90,7 +86,12 @@ function pieceClickHandler(event) {
     // 隣接するピースを再計算する
     calcAdjacentPositions();
   }
-  isFinished(positions);
+  //クリアした時に，アラートを表示（OKを押すとリロード）
+  if(isFinished(positions)==true){
+    window.alert("手数"+count+"でクリア");
+    window.alert("Restart!!");
+    document.location.reload();
+  };
 }
 
 

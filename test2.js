@@ -5,24 +5,48 @@ let down;  // 空白ピース基準で 1 つ下のピースの場所を記録
 let left;  // 空白ピース基準で 1 つ左のピースの場所を記録
 let right; // 空白ピース基準で 1 つ右のピースの場所を記録
 let count=0;// クリック数を記録
+let move=0;//配列内で正解の値まで入れ替えるのに要した回数
+let dis;
 
 // 各ピースの場所を記録
 let positions = [
-   6,  4,  3, 10,
-   7,  2,  1,  5,
-   9, 13, 11,  8,
-  15, 14, 12, 16,
+   1,  2,  3,  4,
+   5,  6,  7,  8,
+   9, 10, 11, 12,
+  13, 14, 16, 15,
 ];
+
+let positionsCheck=positions;
 
 //シャッフル関数
 function randomizePositions(array){
-  for(var i = (array.length - 1); 0 < i; i--){
-    var r = Math.floor(Math.random() * (i + 1));
-    var tmp = array[i];
-    array[i] = array[r];
-    array[r] = tmp;
+    for(var i = (array.length - 1); 0 < i; i--){
+      var r = Math.floor(Math.random() * (i + 1));
+      var tmp = array[i];
+      array[i] = array[r];
+      array[r] = tmp;
+    }
+    return array;
   }
-  return array;
+
+//クリア可能か調べる
+function checker(array){
+    for(var i = 0; (array.length - 1) > i; i++){
+        if (i+1!=array[i]){
+            if ((array.length)==array[i]){
+                dis=(array.length)-i;
+                move++;
+                array.splice(i,1,i+1);
+            }
+            else{
+          move++;
+          array.splice(i,1,i+1);
+            }
+        }
+    }
+    if(dis%2!==move%2){
+        document.location.reload();
+    }
 }
 
 // 空白ピースを基準に、上下左右のピースの場所を調べる関数
@@ -46,7 +70,6 @@ function calcAdjacentPositions() {
   right = temp_right;
 }
 
-
 // Component 相当の関数を準備 (State => View にあたるもの)
 // ----------------------------------------------------------------------------
 function component() {
@@ -55,7 +78,7 @@ function component() {
 
     piece.style.order = positions[n];
   }
-  document.getElementById('count').innerHTML = "現在のクリック数は"+count ;
+  document.getElementById('count').innerHTML = count ;
 }
 
 
@@ -64,6 +87,7 @@ function component() {
 randomizePositions(positions);
 component();
 calcAdjacentPositions();
+checker(positionsCheck);
 
 //配列の要素の順番を確認する関数
 function isFinished(array){
@@ -101,6 +125,7 @@ function pieceClickHandler(event) {
   }
   //クリアした時に，アラートを表示（OKを押すとリロード）
   if(isFinished(positions)==true){
+    window.alert("手数"+count+"でクリア");
     window.alert("Restart!!");
     document.location.reload();
   }
