@@ -61,7 +61,8 @@ function isFinished(array){
       return false;
     }
     if (array[i]==(array.length - 1)){
-      window.alert("Congratulations!!");
+      window.alert("Restart!!");
+      document.location.reload();
       return true;
     }
   }
