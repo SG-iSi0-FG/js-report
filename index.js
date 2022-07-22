@@ -101,6 +101,7 @@ function pieceClickHandler(event) {
   }
   //クリアした時に，アラートを表示（OKを押すとリロード）
   if(isFinished(positions)==true){
+    window.alert("手数"+count+"でクリア");
     window.alert("Restart!!");
     document.location.reload();
   }

@@ -16,7 +16,7 @@ let positions = [
   13, 14, 16, 15,
 ];
 
-let positionsCheck=positions;
+let positionsCheck=[];
 
 //シャッフル関数
 function randomizePositions(array){
@@ -31,10 +31,11 @@ function randomizePositions(array){
 
 //クリア可能か調べる
 function checker(array){
+    array=positions;
     for(var i = 0; (array.length - 1) > i; i++){
         if (i+1!=array[i]){
-            if ((array.length)==array[i]){
-                dis=(array.length)-i;
+            if ((array.length-1)==array[i]){
+                dis=(array.length-1)-i;
                 move++;
                 array.splice(i,1,i+1);
             }
@@ -44,7 +45,7 @@ function checker(array){
             }
         }
     }
-    if(dis%2!==move%2){
+    if(dis%2!=move%2){
         document.location.reload();
     }
 }
