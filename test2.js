@@ -32,7 +32,7 @@ function randomizePositions(array){
 //クリア可能か調べる
 function checker(array){
     array=positions;
-    for(var i = 0; (array.length - 1) > i; i++){
+    for(var i = 0; (array.length) > i; i++){
         if (i+1!=array[i]){
             if ((array.length-1)==array[i]){
                 dis=(array.length-1)-i;
@@ -45,7 +45,7 @@ function checker(array){
             }
         }
     }
-    if(dis%2!=move%2){
+    if(dis%2!==move%2){
         document.location.reload();
     }
 }
