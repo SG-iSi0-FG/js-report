@@ -6,9 +6,7 @@ let left;  // 空白ピース基準で 1 つ左のピースの場所を記録
 let right; // 空白ピース基準で 1 つ右のピースの場所を記録
 let count=0;// クリック数を記録
 
-
 // 各ピースの場所を記録
-// ----------------------------------------------------------------------------
 let positions = [
    6,  4,  3, 10,
    7,  2,  1,  5,
@@ -16,10 +14,7 @@ let positions = [
   15, 14, 12, 16,
 ];
 
-
-// シャッフル関数
-// ----------------------------------------------------------------------------
-// フィッシャーイェーツのアルゴリズム
+//シャッフル関数
 function randomizePositions(array){
   for(var i = (array.length - 1); 0 < i; i--){
     var r = Math.floor(Math.random() * (i + 1));
@@ -29,18 +24,6 @@ function randomizePositions(array){
   }
   return array;
 }
-
-
-// ダステンフェルドのアルゴリズム（フィッシャーイェーツのアルゴリズムを改良したもの）
-/*
-function randomizePositions(array){
-  for (i = array.length; 1 < i; i--) {
-    k = Math.floor(Math.random() * i);
-    [array[k], array[i - 1]] = [array[i - 1], array[k]];
-  }
-}
-*/
-
 
 // 空白ピースを基準に、上下左右のピースの場所を調べる関数
 // ----------------------------------------------------------------------------
@@ -82,9 +65,7 @@ randomizePositions(positions);
 component();
 calcAdjacentPositions();
 
-
-// 配列の要素の順番を確認する関数
-// ----------------------------------------------------------------------------
+//配列の要素の順番を確認してクリア判定を出す関数
 function isFinished(array){
   for(var i = 0; (array.length - 1) > i; i++){
     if (i+1!=array[i]){
@@ -95,7 +76,6 @@ function isFinished(array){
     }
   }
 }
-
 
 // ピースがクリックされたときに実行する処理 (関数)
 // ----------------------------------------------------------------------------
@@ -119,7 +99,7 @@ function pieceClickHandler(event) {
     // 隣接するピースを再計算する
     calcAdjacentPositions();
   }
-  // クリアした時に，アラートを表示（OKを押すとリロード）
+  //クリアした時に，アラートを表示（OKを押すとリロード）
   if(isFinished(positions)==true){
     window.alert("手数"+count+"でクリア");
     window.alert("Restart!!");

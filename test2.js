@@ -30,24 +30,9 @@ function randomizePositions(array){
   }
 
 //クリア可能か調べる
-function checker(array){
-    array=positions;
-    for(var i = 0; (array.length) > i; i++){
-        if (i+1!=array[i]){
-            if ((array.length-1)==array[i]){
-                dis=(array.length-1)-i;
-                move++;
-                array.splice(i,1,i+1);
-            }
-            else{
-          move++;
-          array.splice(i,1,i+1);
-            }
-        }
-    }
-    if(dis%2!==move%2){
-        document.location.reload();
-    }
+function checker(array1,array2){
+  array1=array2
+  
 }
 
 // 空白ピースを基準に、上下左右のピースの場所を調べる関数
@@ -88,7 +73,7 @@ function component() {
 randomizePositions(positions);
 component();
 calcAdjacentPositions();
-checker(positionsCheck);
+checker(positionsCheck,positions);
 
 //配列の要素の順番を確認する関数
 function isFinished(array){
